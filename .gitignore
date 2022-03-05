@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# no jetbrains
+.idea/
+
+# no package lock
+package-lock.json
