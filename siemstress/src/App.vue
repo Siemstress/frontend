@@ -54,13 +54,15 @@
 
           <hr>
 
+          <template v-if="this.CURRENT_USER.isAdmin">
           <!-- user management -->
           <li class="nav-link mx-1 my-lg-2">
             <span class="d-block ps-lg-1">
               <i class="bi bi-person-lines-fill icon-fw pe-1 pe-lg-2"></i>
-              <span class="d-none d-md-inline">Users</span>
+              <span class="d-none d-md-inline">User Mgmt.</span>
             </span>
           </li>
+          </template>
           <!-- profile -->
           <li class="nav-link mx-1 my-lg-2">
             <span class="d-block ps-lg-1">
@@ -83,15 +85,23 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "@popperjs/core";
-import "echarts";
 
 import Dashboard from "./components/Dashboard";
 
 export default {
   name: 'App',
-    components: {
+  components: {
       Dashboard
-  }
+  },
+  data() {
+    return {
+      CURRENT_USER: null,
+    }
+  },
+  async beforeCreate() {
+    let api = await this.$apiCall("GET", `/api/whoami/`);
+    this.CURRENT_USER = api.user;
+  },
 };
 </script>
 
