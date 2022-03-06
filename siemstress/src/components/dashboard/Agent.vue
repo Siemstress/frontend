@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-8 text-start">
           {{this.agentObj.hostname || "Unknown Hostname"}}
-          <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}} ({{this.agentObj.kernel || "Unknown Kernel"}})</small>
+          <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}}</small>
         </div>
-        <div class="col-4 text-end"><em>{{this.agentObj.externalIp || "Unknown IP"}}</em>&nbsp;<i class="bi bi-gear-fill"></i></div>
+        <div class="col-4 text-end"><i class="bi bi-gear-fill"></i></div>
       </div>
     </div>
     <div class="card-body">
@@ -18,18 +18,19 @@
         <div class="col-3 chart" :id="`chart-dsk-${this.agentObj.id}`"></div>
       </div>
     </div>
-    <div class="card-footer">
-      <div class="d-flex flex-row flex-nowrap justify-content-end">
-        <!-- ping button -->
-        <button type="button" class="btn btn-sm btn-outline-primary btn-ping me-2">Ping</button>
-        <!-- report dropdown/input -->
-        <div class="input-group w-auto">
-          <select name="report-select" class="form-select form-select-sm">
-            <option value=0 disabled selected>Choose a report...</option>
-            <option value="report_id">report name</option>
-          </select>
-          <button type="button" class="btn btn-sm btn-success btn-generate">Generate Report</button>
-        </div>
+    <div class="card-footer d-flex flex-row flex-nowrap justify-content-between">
+      <em>{{this.agentObj.externalIp || "Unknown IP"}}</em>
+      <div>
+        <!-- refresh agent -->
+        <button type="button" class="btn btn-sm btn-info btn-refresh me-2">
+          <i class="bi bi-arrow-clockwise"></i>
+          Refresh
+        </button>
+        <!-- generate report -->
+        <button type="button" class="btn btn-sm btn-success btn-generate">
+          <i class="bi bi-clipboard-pulse"></i>
+          Generate Report
+        </button>
       </div>
     </div>
   </div>
@@ -106,7 +107,7 @@ export default {
 .chart {
   height: 10vw;
 }
-.btn-ping, .btn-generate, .form-select {
+.btn-delete, .btn-generate, .btn-refresh {
   width: max-content !important;
   max-width: 200px !important;
 }
