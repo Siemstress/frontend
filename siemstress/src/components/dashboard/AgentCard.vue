@@ -3,8 +3,8 @@
     <div class="card-header">
       <div class="row">
         <div class="col-8 text-start">
-          {{this.agentObj.hostname || "Unknown Hostname"}}
-          <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}}</small>
+          {{ this.agentObj.hostname || "Unknown Hostname" }}
+          <small class="text-muted">&nbsp;- {{ this.agentObj.operatingSystem || "Unknown OS" }}</small>
         </div>
         <a class="col-4 text-end" v-on:click="openOptionsDialog"><i class="bi bi-gear-fill"></i></a>
       </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="card-footer d-flex flex-row flex-nowrap justify-content-between">
-      <em>{{this.agentObj.externalIp || "Unknown IP"}}</em>
+      <em>{{ this.agentObj.externalIp || "Unknown IP" }}</em>
       <div>
         <!-- refresh agent -->
         <button type="button" class="btn btn-sm btn-info btn-refresh me-2">
@@ -27,10 +27,11 @@
           Refresh
         </button>
         <!-- generate report -->
-        <button type="button" class="btn btn-sm btn-success btn-generate">
+        <a target="_blank" :href="'http://siemstress.tech/report?id='+this.agentObj.id" type="button"
+           class="btn btn-sm btn-success btn-generate">
           <i class="bi bi-clipboard-pulse"></i>
           Generate Report
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -58,29 +59,41 @@ export default {
     // update interval (in ms)
     const UPDATE_INTERVAL = this.updateInterval ?? 1000;
     // charts
-    const CHART_CPU = echarts.init(document.getElementById(`chart-cpu-${this.id}`));
-    const CHART_MEM = echarts.init(document.getElementById(`chart-mem-${this.id}`));
-    const CHART_NET = echarts.init(document.getElementById(`chart-net-${this.id}`));
-    const CHART_DSK = echarts.init(document.getElementById(`chart-dsk-${this.id}`));
+    const CHART_CPU = echarts.init(document.getElementById(`chart-cpu-${this.agentObj.id}`));
+    const CHART_MEM = echarts.init(document.getElementById(`chart-mem-${this.agentObj.id}`));
+    const CHART_NET = echarts.init(document.getElementById(`chart-net-${this.agentObj.id}`));
+    const CHART_DSK = echarts.init(document.getElementById(`chart-dsk-${this.agentObj.id}`));
 
-    // register the charts
-    CHART_CPU.setOption(generateProgressChart("CPU"));
-    CHART_MEM.setOption(generateProgressChart("Memory"));
-    CHART_NET.setOption(generateProgressChart("Network"));
-    CHART_DSK.setOption(generateProgressChart("Disk"));
-
-    /**
     this.intervalCallback = setInterval(async () => {
-      let data = this.$apiCall("GET", `/api/getStatus/${this.agentID}`);
-      // update the charts with data
-      console.log(data);
-    }, UPDATE_INTERVAL);
-    */
+      let data = await this.$apiCall("GET", `/api/getAgent/${this.agentObj.id}`);
 
-    function generateProgressChart(title) {
+      // register the charts
+      CHART_CPU.setOption(generateProgressChart("CPU", `${data.lastStatus.cpu}%`, [{
+        value: data.lastStatus.cpu,
+        itemStyle: {color: 'orange'}
+      }, {value: 100 - data.lastStatus.cpu}]));
+      CHART_MEM.setOption(generateProgressChart("Memory", `${data.lastStatus.memory}%`, [{
+        value: data.lastStatus.memory,
+        itemStyle: {color: 'green'}
+      }, {value: 100 - data.lastStatus.memory}]));
+      CHART_NET.setOption(generateProgressChart("Network", `↓${data.lastStatus.netIn} ↑${data.lastStatus.netOut}`, [{
+        value: data.lastStatus.netIn,
+        itemStyle: {color: 'purple'}
+      }, {value: data.lastStatus.netOut, itemStyle: {color: 'blue'}}]));
+      CHART_DSK.setOption(generateProgressChart("Disk", `${data.lastStatus.disk}%`, [{
+        value: data.lastStatus.disk,
+        itemStyle: {color: 'red'}
+      }, {value: 100 - data.lastStatus.disk}]));
+
+      console.log(data);
+    }, 2000);
+
+
+    function generateProgressChart(title, subtext, data) {
       return {
         title: {
           text: title,
+          subtext: subtext,
           left: "center",
           top: "center",
           textStyle: {
@@ -90,13 +103,15 @@ export default {
         series: [{
           type: "pie",
           radius: ["70%", "100%"],
+          label: {show: false},
           itemStyle: {
             borderRadius: 8,
           },
+          data: data
         }],
       };
     }
-  }, 
+  },
   created() {
     window.addEventListener("resize", this.regenerateProgressCharts);
   },
@@ -115,6 +130,7 @@ export default {
 .chart {
   height: 10vw;
 }
+
 .btn-delete, .btn-generate, .btn-refresh {
   width: max-content !important;
   max-width: 200px !important;

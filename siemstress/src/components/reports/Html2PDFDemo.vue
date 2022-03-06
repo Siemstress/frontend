@@ -296,6 +296,8 @@ export default {
       countries.sort((a, b) => (a.count < b.count) ? 1 : -1);
       let tableRef = document.getElementById('countryByIncident')
 
+
+      let sentry = 0;
       for (let i = 0; i < countries.length; i++) {
         let currentCountry = countries[i];
         let newRow = tableRef.insertRow();
@@ -311,15 +313,20 @@ export default {
         newCell.appendChild(document.createTextNode((100 * (currentCountry.count / incidentData.totalRequests)).toFixed(2)))
 
         this.mapData.push({code: currentCountry.code, incidentCount: currentCountry.count});
+        sentry++;
+        if (sentry > 10) {
+          break;
+        }
       }
 
       let users = [];
       for (let userName of Object.keys(incidentData.users)) {
         users.push({username: userName, count: incidentData.users[userName]});
       }
-      countries.sort((a, b) => (a.count < b.count) ? 1 : -1);
+      users.sort((a, b) => (parseInt(a.count) < parseInt(b.count)) ? 1 : -1);
       let usersTableRef = document.getElementById('usersTable');
 
+      sentry = 0;
       for (let i = 0; i < users.length; i++) {
         let currentUser = users[i];
         let newRow = usersTableRef.insertRow();
@@ -333,6 +340,10 @@ export default {
         newCell.appendChild(document.createTextNode(currentUser.count))
         newCell = newRow.insertCell();
         newCell.appendChild(document.createTextNode((100 * (currentUser.count / incidentData.totalRequests)).toFixed(2)))
+        sentry++;
+        if (sentry > 10) {
+          break;
+        }
       }
     }
   },

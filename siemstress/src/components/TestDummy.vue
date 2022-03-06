@@ -1,5 +1,5 @@
 <template>
-  <Html2PDFDemo :incidentData="this.data" :agentID="1"></Html2PDFDemo>
+  <Html2PDFDemo :incidentData="this.data" :agentID="this.agentId"></Html2PDFDemo>
 </template>
 <script>
 
@@ -9,6 +9,7 @@ export default {
   name: "TestDummy",
   data: function () {
     return {
+      agentId: new URLSearchParams(window.location.search).get("id"),
       data: {
         countries: {},
         users: {},
@@ -19,8 +20,7 @@ export default {
   components: {
     Html2PDFDemo
   },
-  async beforeCreate() {
-
+  beforeMount() {
   }
 };
 </script>

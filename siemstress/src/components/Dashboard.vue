@@ -78,7 +78,7 @@
                 <p class="lead">Simply run this command on your host, we do the hard work for you!</p>
                 <hr style="width: 80%; margin-left: 10%;">
                 <div class="container">
-                  <pre id="add-new-command" style="background: #ccc;">COMMAND HERE</pre>
+                  <pre id="add-new-command" style="background: #ccc;">curl http://siemstress.tech/api/agentInstall/3/xWVayDB8sf6h | bash</pre>
                 </div>
               </div>
             </div>

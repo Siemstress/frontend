@@ -5,7 +5,7 @@ import TestDummy from "./components/TestDummy"
 import Html2PDFDemo from "./components/reports/Html2PDFDemo";
 import WorldMap from "./components/reports/WorldMap";
 
-const host = "http://siem.kip"
+const host = "http://siemstress.tech:3000"
 let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0NjUyOTU4Mn0.-j8mCRrYTXA7Cq5ulM6n4a55gVmuuqTNNmU6w2pBDZ8"
 
 const routes = {
@@ -13,7 +13,8 @@ const routes = {
     '/dashboard': Dashboard,
     '/demo': Html2PDFDemo,
     '/worldmap': WorldMap,
-    '/testDummy': TestDummy
+    '/testDummy': TestDummy,
+    '/report': TestDummy
 }
 
 Vue.config.productionTip = false
@@ -31,5 +32,5 @@ Vue.prototype.$apiCall = async function (method, path, body) {
 }
 
 new Vue({
-    render: h => h(routes[window.location.pathname] || Dashboard),
+    render: h => h(routes[window.location.pathname] || App),
 }).$mount('#app')

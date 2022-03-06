@@ -362,7 +362,7 @@ export default {
           .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
           .await(this.draw);
 
-    }, 900);
+    }, 3000);
   },
   watch: {
     data: function (value) {
