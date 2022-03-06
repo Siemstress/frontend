@@ -24,12 +24,10 @@ Our goal this Brickhack is to learn and grow as developers. Each member of the t
 
 ## Features
 
-- Node express server that acts as the communication channel between the webapp and the agents
-- Client agent runs as a service
-- Client agent is compatible with Python 3.x and does not need any additional libraries installed
-- Monitors the CPU usage, memory usage, bandwith incoming, bandwidth outgoing, and disk utilization
-- Can generate reports about the status of a device and SSH logon attempts
-- Reports give a high-level summary of the information pertaining to a device for someone in a security or IT related position
+- Generate reports based on live data
+- View real-time statistics about agents on a sleek dashboard
+- Manage agents currently added to your dashboard
+- Add agents to the dashboard with ease
 
 ## How to Use
 
