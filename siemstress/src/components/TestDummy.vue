@@ -2,7 +2,7 @@
   <Html2PDFDemo :incidentData="this.data" :agentID="1"></Html2PDFDemo>
 </template>
 <script>
-import Html2PDFDemo from './Html2PDFDemo.vue'
+import Html2PDFDemo from './reports/Html2PDFDemo.vue'
 export default {
   name: "TestDummy",
   data: function () {

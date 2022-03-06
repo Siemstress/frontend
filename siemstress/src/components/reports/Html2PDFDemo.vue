@@ -22,7 +22,7 @@
       >
         <section slot="pdf-content" style='background-color: #b4f4f0;'>
           <center>
-            <img src="../assets/siemstressReport.png" alt="SIEMStress Report Logo" style = "width: 50%; height: 50%; margin-top: 25%">
+            <img src="../../assets/siemstressReport.png" alt="SIEMStress Report Logo" style = "width: 50%; height: 50%; margin-top: 25%">
             <h2>Requested By: {{fullName}}</h2>
             <h2>{{date}}</h2>
             <h2>{{reportType}}</h2>
