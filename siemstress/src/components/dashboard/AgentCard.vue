@@ -6,7 +6,7 @@
           {{this.agentObj.hostname || "Unknown Hostname"}}
           <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}}</small>
         </div>
-        <a class="col-4 text-end"><i class="bi bi-gear-fill"></i></a>
+        <a class="col-4 text-end" v-on:click="openOptionsDialog"><i class="bi bi-gear-fill"></i></a>
       </div>
     </div>
     <div class="card-body">
@@ -54,7 +54,7 @@ export default {
   beforeCreate() {
     this.agentObj = this.agent;
   },
-  mounted() {
+  async mounted() {
     // update interval (in ms)
     const UPDATE_INTERVAL = this.updateInterval ?? 1000;
     // charts
@@ -99,7 +99,12 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.intervalCallback);
-  }
+  },
+  methods: {
+    openOptionsDialog() {
+      this.$emit('openDialogOptions', this.agentObj);
+    }
+  },
 }
 </script>
 
