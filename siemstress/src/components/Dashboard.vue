@@ -1,7 +1,9 @@
 <template>
-  <div class="container row">
-    <AgentCard class="col"/>
-    <AgentCard class="col"/>
+  <div class="container p-3">
+      <div class="row">
+        <AgentCard class="col" />
+        <AgentCard class="col" />
+      </div>
   </div>
 </template>
 
