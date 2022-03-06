@@ -51,6 +51,23 @@
               </li>
             </ul>
           </li>
+
+          <hr>
+
+          <!-- user management -->
+          <li class="nav-link mx-1 my-lg-2">
+            <span class="d-block ps-lg-1">
+              <i class="bi bi-person-lines-fill icon-fw pe-1 pe-lg-2"></i>
+              <span class="d-none d-md-inline">Users</span>
+            </span>
+          </li>
+          <!-- profile -->
+          <li class="nav-link mx-1 my-lg-2">
+            <span class="d-block ps-lg-1">
+              <i class="bi bi-person-circle icon-fw pe-1 pe-lg-2"></i>
+              <span class="d-none d-md-inline">My Profile</span>
+            </span>
+          </li>
         </ul>
       </nav>
     </aside>
