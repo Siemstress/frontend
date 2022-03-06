@@ -54,13 +54,15 @@
 
           <hr>
 
+          <template v-if="this.user.isAdmin">
           <!-- user management -->
           <li class="nav-link mx-1 my-lg-2">
             <span class="d-block ps-lg-1">
               <i class="bi bi-person-lines-fill icon-fw pe-1 pe-lg-2"></i>
-              <span class="d-none d-md-inline">Users</span>
+              <span class="d-none d-md-inline">User Mgmt.</span>
             </span>
           </li>
+          </template>
           <!-- profile -->
           <li class="nav-link mx-1 my-lg-2">
             <span class="d-block ps-lg-1">
@@ -83,15 +85,29 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "@popperjs/core";
-import "echarts";
 
 import Dashboard from "./components/Dashboard";
 
+let CURRENT_USER;
+
 export default {
   name: 'App',
-    components: {
+  components: {
       Dashboard
-  }
+  },
+  data() {
+    return {
+      user: null,
+    };
+  },
+  async beforeCreate() {
+    let whoami = await this.$apiCall("GET", `/api/whoami/`);
+    this.user = whoami.user;
+    // can i avoid using this.user altogether?
+    // and instead have some global for the whole app per session instead of querying each time?
+    // or i just pass the user between components, but that seems dirty
+    CURRENT_USER = whoami.user;
+  },
 };
 </script>
 
