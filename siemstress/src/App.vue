@@ -62,11 +62,12 @@
 </template>
 
 <script>
-import "bootstrap"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap-icons/font/bootstrap-icons.css"
-import "@popperjs/core"
-import "echarts"
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "@popperjs/core";
+import "echarts";
+
 import Dashboard from "./components/Dashboard";
 
 export default {
@@ -74,7 +75,7 @@ export default {
     components: {
       Dashboard
   }
-}
+};
 </script>
 
 <style>
