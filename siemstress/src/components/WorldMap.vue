@@ -3,6 +3,7 @@
 </template>
 <script>
 import * as d3 from "d3";
+import _ from 'lodash';
 
 export default {
   name: "worldmap",
@@ -15,20 +16,16 @@ export default {
         return [{code: 'RUS', incidentCount: 0}]
       }
     },
-    //Max number of incidents
-    max_count: {
-      type: Number,
-      default: 1
-    },
+
     //Width of the component
     componentWidth: {
       type: Number,
-      default: 500
+      default: 750
     },
     //Height of the component
     componentHeight: {
       type: Number,
-      default: 500
+      default: 600
     },
   },
   methods: {
@@ -37,6 +34,7 @@ export default {
       this.data = d3.map(this.configs.rawData, function (d) {
         return d.code
       })
+      
     },
 
     initializeDimensions() {
@@ -57,8 +55,12 @@ export default {
       //Localize the data for callback functions
       let data = this.data;
       //Initialize the color scale
+      this.max_count = _.maxBy(data.values(), function(o) {return o.incidentCount}).incidentCount
+      if (this.max_count == 0){
+        this.max_count = 0.1
+      }
       var colorScale = d3.scaleSequential(d3.interpolate("lightgrey", "red"))
-          .domain([0, this.configs.max_count]);
+          .domain([0, this.max_count]);
       //Add the countries and their fill
       this.svg.append("g")
           .selectAll("path")
@@ -69,13 +71,12 @@ export default {
               .projection(this.projection)
           )
           .attr("border-style", "country")
-
           .attr("fill", function (d) {
             d.incidentCount = typeof data.get(d.id) == "undefined" ? 0 : data.get(d.id).incidentCount;
             return colorScale(d.incidentCount);
           })
-          .style('stroke', 'blue')
-          .style('stroke-width', '2');
+          .style('stroke', 'black')
+          .style('stroke-width', '1');
 
     }
   },
@@ -87,7 +88,7 @@ export default {
 
     this.projection = d3.geoMercator()
         .scale(50 * (width / 350))
-        .center([0, 0 + (height / 30)])
+        .center([0, 0 + (height / 12)])
         .translate([width / 2, height / 2]);
 
     d3.queue()

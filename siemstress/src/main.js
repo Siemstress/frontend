@@ -2,14 +2,16 @@ import Vue from 'vue'
 import Dashboard from "./components/Dashboard";
 import Html2PDFDemo from "./components/Html2PDFDemo";
 import WorldMap from "./components/WorldMap";
+import TestDummy from "./components/TestDummy"
 
-const host = "http://localhost:3000"
-let token = localStorage.getItem("token");
+const host = "http://siem.kip"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0NjUyOTU4Mn0.-j8mCRrYTXA7Cq5ulM6n4a55gVmuuqTNNmU6w2pBDZ8"
 
 const routes = {
     '/': Dashboard,
     '/demo': Html2PDFDemo,
-    '/worldmap': WorldMap
+    '/worldmap': WorldMap,
+    '/testDummy': TestDummy
 }
 
 Vue.config.productionTip = false
