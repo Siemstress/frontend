@@ -41,3 +41,10 @@
     <!-- view/edit user group -->
   </div>
 </template>
+
+
+<script>
+export default {
+  name: "Profile",
+}
+</script>
