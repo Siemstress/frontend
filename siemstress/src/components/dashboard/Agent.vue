@@ -45,7 +45,7 @@ export default {
     return {
       id: null,
       intervalCallback: null
-    }
+    };
   },
   beforeMount() {
     this.id = this._uid;
@@ -101,7 +101,7 @@ export default {
 
 <style>
 .chart {
-  height: 150px;
+  height: 10vw;
 }
 .btn-ping, .btn-generate, .form-select {
   width: max-content !important;
