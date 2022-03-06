@@ -100,33 +100,6 @@ export default {
   created() {
     window.addEventListener("resize", this.regenerateProgressCharts);
   },
-  beforeMount() {
-    this.id = this._uid;
-  },
-  mounted() {
-    // update interval (in ms)
-    const UPDATE_INTERVAL = this.updateInterval ?? 1000;
-    // charts
-    const CHART_CPU = echarts.init(document.getElementById(`chart-cpu-${this.id}`));
-    const CHART_MEM = echarts.init(document.getElementById(`chart-mem-${this.id}`));
-    const CHART_NET = echarts.init(document.getElementById(`chart-net-${this.id}`));
-    const CHART_DSK = echarts.init(document.getElementById(`chart-dsk-${this.id}`));
-    // register the charts
-    CHART_CPU.setOption(this.generateProgressChart("CPU"));
-    CHART_MEM.setOption(this.generateProgressChart("Memory"));
-    CHART_NET.setOption(this.generateProgressChart("Network"));
-    CHART_DSK.setOption(this.generateProgressChart("Disk"));
-
-    /**
-    this.intervalCallback = setInterval(async () => {
-      let data = this.$apiCall("GET", `/api/getStatus/${this.agentID}`);
-      // update the charts with data
-      console.log(data);
-    }, UPDATE_INTERVAL);
-    */
-
-    
-  },
   beforeDestroy() {
     clearInterval(this.intervalCallback);
   },

@@ -78,14 +78,12 @@
                 <p class="lead">Simply run this command on your host, we do the hard work for you!</p>
                 <hr style="width: 80%; margin-left: 10%;">
                 <div class="container">
-                  <pre id="add-new-command" style="background: #ccc;">
-                    COMMAND HERE
-                  </pre>
+                  <pre id="add-new-command" style="background: #ccc;">COMMAND HERE</pre>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismissable="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
