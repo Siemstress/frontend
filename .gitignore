@@ -1,0 +1,6 @@
+# No Idea
+.idea/
+
+# No package lock
+package-lock.json
+siemstress/package-lock.json
