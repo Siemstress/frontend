@@ -15,7 +15,7 @@
       </div>
 
       <!-- options modal -->
-      <div class="modal" tabindex="-1">
+      <div id="options-modal" class="modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -23,7 +23,28 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+              <div class="row">
+                <!-- hostname -->
+                <div class="col-8 col-md-4">
+                  <label class="form-label" for="options-modal-hostname-copy">Hostname:</label>
+                  <input id="options-modal-hostname-copy" class="form-control" style="user-select: all;" readonly>
+                </div>
+                <!-- ip -->
+                <div class="col-4 col-md-2">
+                  <label class="form-label" for="options-modal-ip-copy">IP:</label>
+                  <input id="options-modal-ip-copy" class="form-control" style="user-select: all;" readonly>
+                </div>
+                <!-- os -->
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="options-modal-os-copy">Operating System:</label>
+                  <input id="options-modal-os-copy" class="form-control" style="user-select: all;" readonly>
+                </div>
+                <!-- kernel -->
+                <div class="col-12">
+                  <label class="form-label" for="options-modal-kernel-copy">Kernel:</label>
+                  <textarea id="options-modal-kernel-copy" class="form-control" style="user-select: all;" readonly></textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>

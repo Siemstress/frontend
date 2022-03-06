@@ -6,7 +6,7 @@
           {{this.agentObj.hostname || "Unknown Hostname"}}
           <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}}</small>
         </div>
-        <div class="col-4 text-end"><i class="bi bi-gear-fill"></i></div>
+        <a class="col-4 text-end"><i class="bi bi-gear-fill"></i></a>
       </div>
     </div>
     <div class="card-body">
