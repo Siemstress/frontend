@@ -1,13 +1,15 @@
 import Vue from 'vue'
+import App from "./App";
 import Dashboard from "./components/Dashboard";
-import Html2PDFDemo from "./components/Html2PDFDemo";
-import WorldMap from "./components/WorldMap";
+import Html2PDFDemo from "./components/reports/Html2PDFDemo";
+import WorldMap from "./components/reports/WorldMap";
 
 const host = "http://localhost:3000"
 let token = localStorage.getItem("token");
 
 const routes = {
-    '/': Dashboard,
+    '/': App,
+    '/dashboard': Dashboard,
     '/demo': Html2PDFDemo,
     '/worldmap': WorldMap
 }
