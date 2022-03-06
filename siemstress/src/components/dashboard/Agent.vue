@@ -3,10 +3,10 @@
     <div class="card-header">
       <div class="row">
         <div class="col-8 text-start">
-          {{this.agentObj.hostname ?? "Unknown Hostname"}}
-          <small class="text-muted">&nbsp;- {{this.agentObj.os ?? "Unknown OS"}} ({{this.agentObj.kernel ?? "Unknown Kernel"}})</small>
+          {{this.agentObj.hostname || "Unknown Hostname"}}
+          <small class="text-muted">&nbsp;- {{this.agentObj.operatingSystem || "Unknown OS"}} ({{this.agentObj.kernel || "Unknown Kernel"}})</small>
         </div>
-        <div class="col-4 text-end"><em>{{this.agentObj.externalIp ?? "Unknown IP"}}</em>&nbsp;<i class="bi bi-gear-fill"></i></div>
+        <div class="col-4 text-end"><em>{{this.agentObj.externalIp || "Unknown IP"}}</em>&nbsp;<i class="bi bi-gear-fill"></i></div>
       </div>
     </div>
     <div class="card-body">
